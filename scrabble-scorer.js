@@ -36,8 +36,33 @@ function oldScrabbleScorer(word) {
 
 function initialPrompt() {
    let word = input.question("Let's play some Scrabble! \n \nEnter a word to score: ");
-   console.log(vowelScrabbleScorer(word));
+   //return word;
+   //console.log(vowelScrabbleScorer(word));
+   
+  /*function scorerPrompt() {
+    let arrayPrompt = input.question("Which scoring algorith would you like to use? \n 0 - Simple: One point per character \n 1 - Vowel Bonus: Vowels are worth 3 points \n 2 - Scrabble: Uses scrabble point system  \n Enter 0, 1, or 2: ");
+
+    if (arrayPrompt == '0') {
+    console.log(`Score for ${word}: ${simpleScrabbleScorer(word)}`);
+  } else if (arrayPrompt == '1') {
+    console.log(scoringAlgorithms[1]);
+  } else if (arrayPrompt == '2') {
+    console.log(scoringAlgorithms[2]);
+  } else console.log('Invalid selection, please try again.');*/
+   scorerPrompt();
 };
+
+function scorerPrompt() {
+  let arrayPrompt = input.question("Which scoring algorith would you like to use? \n 0 - Simple: One point per character \n 1 - Vowel Bonus: Vowels are worth 3 points \n 2 - Scrabble: Uses scrabble point system  \n Enter 0, 1, or 2: ");
+
+  if (arrayPrompt == '0') {
+    console.log(`Score for ${word}: ${simpleScrabbleScorer(word)}`);
+  } else if (arrayPrompt == '1') {
+    console.log(scoringAlgorithms[1]);
+  } else if (arrayPrompt == '2') {
+    console.log(scoringAlgorithms[2]);
+  } else console.log('Invalid selection, please try again.');
+  };
 
 const simplePointStructure = {
   1: ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z']
@@ -88,9 +113,20 @@ let vowelBonusScore;
 
 let scrabbleScore;
 
-const scoringAlgorithms = [];
-
-function scorerPrompt() {}
+const scoringAlgorithms = [
+  { name: "Simple Score",
+    description: "Each letter is worth 1 point",
+    scoringFunction: simpleScore
+  },
+  { name: "Bonus Vowels",
+    description: "Vowels are 3 pts, consonants are 1 pt.",
+    scoringFunction: vowelBonusScore
+  },
+  { name: "Scrabble", 
+    description: "The traditional scoring algorithm.",
+    scoringFunction: scrabbleScore
+  }
+];
 
 function transform() {};
 
@@ -113,6 +149,6 @@ module.exports = {
    scoringAlgorithms: scoringAlgorithms,
    newPointStructure: newPointStructure,
 	runProgram: runProgram,
-	scorerPrompt: scorerPrompt
+	piescorerPrompt: scorerPrompt
 };
 
